@@ -37,7 +37,6 @@ type MovieState = {
 
 const moviesAdapter = createEntityAdapter<Movie>({
   selectId: (movie) => movie.id,
-  // sortComparer: (a, b) => a.rating - b.rating,
 });
 
 const createPage = (
@@ -59,7 +58,7 @@ const readFavorites = () => {
   try {
     parsed = JSON.parse(stored);
   } catch (e) {
-    // just ignore any pare errors
+
   }
 
   if (

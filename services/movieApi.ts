@@ -11,23 +11,7 @@ type MoviesResponseItem = {
   overview: string;
 };
 
-const delay = (duration: number = 1000) =>
-  new Promise((resolve) => setTimeout(resolve, duration));
-
-// Add this to avoid several errors in a row
-let randomErrorOccurred = false;
-
 export async function fetchMoviesRequest(page: number): Promise<Movie[]> {
-  await delay(500 + Math.random() * 2000); // for demonstration purposes
-
-  if (!randomErrorOccurred && Math.random() > 0.5) {
-    randomErrorOccurred = true;
-    throw new Error(
-      "Error for demonstration purposes - retry by pressing on the desired page number again"
-    );
-  }
-  randomErrorOccurred = false;
-
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=${page}`
   );
